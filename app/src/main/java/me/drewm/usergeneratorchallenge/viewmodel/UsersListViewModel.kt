@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import me.drewm.usergeneratorchallenge.model.User
 import me.drewm.usergeneratorchallenge.repo.UserDataRepository
 
+// TODO consider coordinator for navigation handling
 class UsersListViewModel(private val userDataRepository: UserDataRepository) : ViewModel() {
 
     private val eventsChannel = Channel<Event>(Channel.BUFFERED)
