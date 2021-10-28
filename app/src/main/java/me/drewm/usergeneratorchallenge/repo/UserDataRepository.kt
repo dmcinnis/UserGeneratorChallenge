@@ -20,13 +20,14 @@ class UserDataRepository(private val userDataService: UserDataService) {
 //        }
 //    }
 
-    suspend fun getUserListData(): List<User> {
+    suspend fun getUserListData(numUsers: Int): List<User> {
         return withContext(Dispatchers.IO) {
-            val response = userDataService.getUserListData()
+            val response = userDataService.getUserListData(numUsers)
             when {
                 response.isSuccessful -> (response.body() as UserDataResults).results
                 // will wanna update so we can throw an error instead...maybe use a custom
                 // Response-esque sealed class (dif name for disambiguation)
+                // Webcall? or something
                 else -> emptyList()
             }
         }
