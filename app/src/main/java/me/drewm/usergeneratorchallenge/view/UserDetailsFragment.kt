@@ -20,20 +20,28 @@ class UserDetailsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         nullableViewBinding = UserDetailsFragmentBinding.inflate(inflater, container, false)
         return viewBinding.root
     }
 
+    // TODO ViewModel to accommodate more user interactions
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val user = arguments?.getSerializable("user") as User
-        viewBinding.name.text = user.name.last
-        viewBinding.picture.load(user.picture.large) {
-            crossfade(true)
-            placeholder(R.drawable.user_picture_placeholder)
-            transformations(CircleCropTransformation())
+
+        viewBinding.apply {
+            picture.load(user.picture.large) {
+                crossfade(true)
+                placeholder(R.drawable.user_picture_placeholder)
+                transformations(CircleCropTransformation())
+            }
+            name.text = getString(R.string.name, user.name.first, user.name.last)
+            age.text = getString(R.string.age, user.dob.age)
+            email.text = user.email
+            cell.text = user.cell
+            timezone.text = getString(R.string.timezone, user.location.timezone.description)
         }
     }
 

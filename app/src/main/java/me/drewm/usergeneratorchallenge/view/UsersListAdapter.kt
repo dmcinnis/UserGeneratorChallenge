@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
-import coil.transform.RoundedCornersTransformation
 import me.drewm.usergeneratorchallenge.R
 import me.drewm.usergeneratorchallenge.databinding.UserListItemBinding
 import me.drewm.usergeneratorchallenge.model.User
@@ -32,17 +31,16 @@ class UsersListAdapter(
         val user = usersList[position]
 
         holder.binding.apply {
-            // replace w Coil call
-            // include placeholder image
-            //replace w actual user data
             picture.load(user.picture.thumbnail) {
                 crossfade(true)
                 placeholder(R.drawable.user_picture_placeholder)
                 transformations(CircleCropTransformation())
             }
-//            picture.setImageDrawable()
-            name.text = "${user.name.first} ${user.name.last}"
-            // apply data to other view elements
+            name.text = holder.itemView.context.getString(
+                R.string.name, user.name.first, user.name.last
+            )
+            age.text = holder.itemView.context.getString(R.string.age, user.dob.age)
+
             card.setOnClickListener {
                 clickListener.onUserClicked(user)
             }

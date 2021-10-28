@@ -1,45 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        xmlns:tools="http://schemas.android.com/tools">
+        android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.25"
-            />
+            app:layout_constraintGuide_percent="0.25" />
 
     <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline_end"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_percent="0.75"
-            />
+            app:layout_constraintGuide_percent="0.75" />
 
     <ImageView
             android:id="@+id/picture"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/space_large"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/accessibility_user_picture"
             app:layout_constraintEnd_toEndOf="@id/guideline_end"
             app:layout_constraintStart_toStartOf="@id/guideline_start"
-            tools:src="@drawable/user_picture_placeholder"
-            android:adjustViewBounds="true"
-            android:layout_marginTop="32dp"/>
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/user_picture_placeholder" />
 
     <TextView
             android:id="@+id/name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="User Details"
+            android:layout_marginStart="@dimen/space_large"
+            android:layout_marginEnd="@dimen/space_large"
+            android:textAppearance="@style/SubHeading"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@+id/age"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/picture"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="User Details" />
+
+    <TextView
+            android:id="@+id/age"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_large"
+            android:layout_marginTop="@dimen/space_xsmall"
+            android:layout_marginEnd="@dimen/space_large"
+            android:textAppearance="@style/SubHeading"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@+id/email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/name"
+            tools:text="Age: 38" />
+
+    <TextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_large"
+            android:layout_marginTop="@dimen/space_xsmall"
+            android:layout_marginEnd="@dimen/space_large"
+            android:textAppearance="@style/SubHeading"
+            android:textIsSelectable="true"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@+id/cell"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/age"
+            tools:text="asdfasdf@gmail.com" />
+
+    <TextView
+            android:id="@+id/cell"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_large"
+            android:layout_marginTop="@dimen/space_xsmall"
+            android:layout_marginEnd="@dimen/space_large"
+            android:textAppearance="@style/SubHeading"
+            android:textIsSelectable="true"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toTopOf="@+id/timezone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/email"
+            tools:text="504-123-4567" />
+
+    <TextView
+            android:id="@+id/timezone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_large"
+            android:layout_marginTop="@dimen/space_xsmall"
+            android:layout_marginEnd="@dimen/space_large"
+            android:textAlignment="center"
+            android:textAppearance="@style/SubHeading"
+            app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/picture" />
+            app:layout_constraintTop_toBottomOf="@id/cell"
+            tools:text="Timezone: Central" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

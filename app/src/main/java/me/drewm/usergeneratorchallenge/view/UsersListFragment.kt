@@ -26,13 +26,10 @@ import me.drewm.usergeneratorchallenge.viewmodel.UsersListViewModelFactory
 
 class UsersListFragment : Fragment(), UsersListAdapter.ClickListener {
 
-    // might need to move this into onViewCreated? activity might not be available yet
-    // and this feels a bit unweildy / non-DRY as more dependencies get added
     private val viewModel by viewModels<UsersListViewModel> {
         UsersListViewModelFactory(
-            UserDataRepository(
-                (activity?.application as UserGeneratorChallengeApp).appContainer.userApiService
-            )
+            UserDataRepository((activity?.application as UserGeneratorChallengeApp)
+                .appContainer.userApiService)
         )
     }
 
@@ -45,7 +42,7 @@ class UsersListFragment : Fragment(), UsersListAdapter.ClickListener {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         nullableViewBinding = UsersListFragmentBinding.inflate(inflater, container, false)
         return viewBinding.root
     }
@@ -57,19 +54,20 @@ class UsersListFragment : Fragment(), UsersListAdapter.ClickListener {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                // Listen for users data
                 launch {
                     viewModel.usersDataFlow.collect {
                         usersListAdapter.updateUsersList(it)
                     }
                 }
-
+                // Listen for non-data events
                 launch {
                     viewModel.eventsFlow.collect {
                         when (it) {
-                            is Event.ShowSpinner -> {}
-                            is Event.HideSpinner -> {}
+                            is Event.ShowSpinner -> { /* TODO */ }
+                            is Event.HideSpinner -> { /* TODO */ }
                             is Event.NavigateToUserDetails -> {
-                                // pass this user data
+                                // Pass user data to UserDetailsFragment
                                 val bundle = bundleOf("user" to it.user)
                                 findNavController().navigate(R.id
                                     .action_usersListFragment_to_userDetailsFragment, bundle)

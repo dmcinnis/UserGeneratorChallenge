@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">User Generator Challenge</string>
+    <string name="app_name">User Generator</string>
+
+    <string name="name">%s %s</string>
+    <string name="age">Age: %s</string>
+    <string name="timezone">Timezone: %s</string>
+
+    <string name="accessibility_user_picture">User Picture</string>
 </resources>

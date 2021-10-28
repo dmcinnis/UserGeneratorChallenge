@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/card"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="@dimen/user_list_item_height"
+        android:layout_marginHorizontal="@dimen/space_medium"
+        android:layout_marginVertical="@dimen/space_small"
         android:clickable="true"
         android:elevation="12dp"
         android:focusable="true"
-        app:cardCornerRadius="4dp"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginVertical="8dp"
-        android:padding="16dp">
+        android:padding="@dimen/space_medium"
+        app:cardCornerRadius="4dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -18,24 +19,39 @@
 
         <ImageView
                 android:id="@+id/picture"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="@dimen/picture_thumbnail_size"
+                android:layout_height="@dimen/picture_thumbnail_size"
+                android:layout_marginStart="@dimen/space_medium"
+                android:contentDescription="@string/accessibility_user_picture"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="User picture" />
+                tools:src="@drawable/user_picture_placeholder" />
 
         <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAppearance="@style/Heading"
+                app:layout_constraintBottom_toBottomOf="@+id/age"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
                 app:layout_constraintStart_toEndOf="@id/picture"
                 app:layout_constraintTop_toTopOf="@id/picture"
-                app:layout_constraintBottom_toBottomOf="@id/picture" />
-        <!--neatly extract resources, strings etc
-        ...maybe some standard margin sizes, etc-->
+                app:layout_constraintVertical_chainStyle="spread"
+                tools:text="Eileen Hawkins" />
 
+        <TextView
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_xsmall"
+                android:textAppearance="@style/SubHeading"
+                app:layout_constraintBottom_toBottomOf="@id/picture"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.4"
+                app:layout_constraintStart_toEndOf="@id/picture"
+                app:layout_constraintTop_toTopOf="@id/name"
+                tools:text="Age: 38" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

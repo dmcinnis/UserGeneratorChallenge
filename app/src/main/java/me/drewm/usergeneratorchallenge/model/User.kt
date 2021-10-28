@@ -11,8 +11,12 @@ data class User(
     val picture: Picture,
     @SerializedName("dob")
     val dob: DateOfBirth,
-
-
+    @SerializedName("email")
+    val email: String = "",
+    @SerializedName("cell")
+    val cell: String = "",
+    @SerializedName("location")
+    val location: Location
 ) : Serializable
 
 data class Name(
@@ -36,4 +40,14 @@ data class DateOfBirth(
     val date: String = "",
     @SerializedName("age")
     val age: String = ""
+)
+
+data class Location(
+    @SerializedName("timezone")
+    val timezone: Timezone
+)
+
+data class Timezone(
+    @SerializedName("description")
+    val description: String = ""
 )
