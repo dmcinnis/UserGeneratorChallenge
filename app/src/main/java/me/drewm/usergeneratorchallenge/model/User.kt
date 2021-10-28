@@ -3,7 +3,6 @@ package me.drewm.usergeneratorchallenge.model
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-//deliberately selecting certain data
 data class User(
     @SerializedName("name")
     val name: Name,

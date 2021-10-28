@@ -1,6 +1,5 @@
 package me.drewm.usergeneratorchallenge.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
@@ -22,15 +21,11 @@ class UsersListViewModel(private val userDataRepository: UserDataRepository) : V
 
     init {
         viewModelScope.launch {
-            //show spinner (shout event)
             val userList = userDataRepository.getUserListData(25)
-            //hide spinner (shout event)
             mutableUsersDataFlow.value = userList
-            Log.d("asdf", userList.toString())
         }
     }
 
-    // could change param to position, convert to user from userList data here
     fun onUserClicked(user: User) {
         viewModelScope.launch {
             eventsChannel.send(Event.NavigateToUserDetails(user))
@@ -41,7 +36,6 @@ class UsersListViewModel(private val userDataRepository: UserDataRepository) : V
 sealed class Event {
     object ShowSpinner : Event()
     object HideSpinner : Event()
-    // need a way to pass User or something
     data class NavigateToUserDetails(val user: User) : Event()
 }
 
